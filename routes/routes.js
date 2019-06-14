@@ -5,10 +5,19 @@ function sendAsJSON(req, res, next) {
   res.json(res.data);
 }
 
-router.get('/test', model.sendTestJsonResponse);
-router.get('/categories', model.getAllCategories, sendAsJSON);
-router.get('/recipes/:id', model.getOneRecipe, sendAsJSON);
-router.get('/recipes', model.getAllRecipes, sendAsJSON);
-router.post('/recipes', model.createOneRecipe, sendAsJSON);
+router.route('/test')
+  .get(model.sendTestJsonResponse);
+
+router.route('/categories')
+  .get(model.getAllCategories, sendAsJSON);
+
+router.route('/recipes/:id')
+  .get(model.getOneRecipe, sendAsJSON)
+  .put(model.editOneRecipe, model.getOneRecipe, sendAsJSON)
+  .delete(model.deleteOneRecipe, sendAsJSON);
+
+router.route('/recipes')
+  .get(model.getAllRecipes, sendAsJSON)
+  .post(model.createOneRecipe, sendAsJSON);
 
 module.exports = router;
