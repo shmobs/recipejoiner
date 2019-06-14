@@ -8,7 +8,7 @@
     "clean": "rm -rf dist && rm -rf node_modules && rm -f package-lock.json",
     "build": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --config webpack.config.js",
     "deploy": "npm run tailwind:css && npm run clean && npm i --only=dev && NODE_ENV=production webpack --mode production --progress && rm -rf node_modules/ && rm -f package-lock.json && npm i --only=prod",
-    "start": "npm run tailwind:css && node server.js",
+    "start": "npm run tailwind:css && NODE_ENV=development node server.js",
     "rebuild": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --colors",
     "watch": "webpack --mode development --progress --watch"
   },

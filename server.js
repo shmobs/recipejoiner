@@ -1,9 +1,14 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('morgan');
 const history = require('connect-history-api-fallback');
 const routes = require('./routes/routes.js');
+
+if (process.env.NODE_ENV === 'development') {
+  dotenv.config({ silent: true });
+}
 
 const PORT = process.argv[2] || process.env.PORT || 3000;
 
@@ -19,6 +24,4 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Serve the 'public' directory as static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(history({ logger }));
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}!`);
-});
+app.listen(PORT, () => console.warn(`listening on port ${PORT}!`));
