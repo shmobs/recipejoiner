@@ -17,7 +17,7 @@ class App extends Component {
 
   logIn(e, userID) {
     e.preventDefault();
-    console.log(e,userID);
+    console.log(e, userID);
     this.setState({
       isLoggedIn: true,
       activeUser: userID,
