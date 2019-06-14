@@ -10,9 +10,9 @@
     "lint:fix": "npm run lint --fix",
     "lint": "eslint . --ignore-pattern '/node_modules/' --ignore-pattern '/dist/'",
     "rebuild": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --colors",
-    "start": "npm run tailwind:css && NODE_ENV=development node server.js",
-    "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
-    "watch": "webpack --mode development --progress --watch"
+    "start": "NODE_ENV=development node server.js",
+    "tailwind:css": "tailwind build src/css/tailwind.src.css -c tailwind.js -o src/css/tailwind.css",
+    "watch": "npm run tailwind:css webpack --mode development --progress --watch"
   },
   "repository": {
     "type": "git",
