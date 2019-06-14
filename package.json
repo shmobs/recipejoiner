@@ -12,7 +12,7 @@
     "rebuild": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --colors",
     "start": "NODE_ENV=development node server.js",
     "tailwind:css": "tailwind build src/css/tailwind.src.css -c tailwind.js -o src/css/tailwind.css",
-    "watch": "npm run tailwind:css webpack --mode development --progress --watch"
+    "watch": "npm run tailwind:css && webpack --mode development --progress --watch"
   },
   "repository": {
     "type": "git",

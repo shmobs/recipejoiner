@@ -6,6 +6,7 @@ const logger = require('morgan');
 const history = require('connect-history-api-fallback');
 const routes = require('./routes/routes.js');
 
+dotenv.config({ silent: true });
 if (process.env.NODE_ENV === 'development') {
   dotenv.config({ silent: true });
 }
