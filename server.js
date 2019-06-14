@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('morgan');
 const history = require('connect-history-api-fallback');
+const routes = require('./routes/routes.js');
 
 const PORT = process.argv[2] || process.env.PORT || 3000;
 
@@ -11,6 +12,8 @@ const app = express();
 app.use(logger('dev'));
 // Similarly, parse json data from the request body
 app.use(bodyParser.json());
+// Set up defined routes on the /api path
+app.use('/api', routes);
 // Serve the 'dist' directory as static files
 app.use(express.static(path.join(__dirname, 'dist')));
 // Serve the 'public' directory as static files
