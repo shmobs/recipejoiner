@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('morgan');
 const history = require('connect-history-api-fallback');
+
 const routes = require('./routes/routes.js');
 
 dotenv.config({ silent: true });

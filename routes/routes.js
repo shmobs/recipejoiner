@@ -13,7 +13,8 @@ router.route('/categories')
 
 router.route('/recipes/:id')
   .get(model.getOneRecipe, sendAsJSON)
-  .put(model.editOneRecipe, model.getOneRecipe, sendAsJSON);
+  .put(model.editOneRecipe, model.getOneRecipe, sendAsJSON)
+  .delete(model.deleteOneRecipe, sendAsJSON);
 
 router.route('/recipes')
   .get(model.getAllRecipes, sendAsJSON)

@@ -118,6 +118,27 @@ function editOneRecipe(req, res, next) {
     .catch(dbError => next(dbError));
 }
 
+function deleteOneRecipe(req, res, next) {
+  const { id } = req.params;
+
+  const intRecipeID = parseInt(id, 10);
+
+  getDB().then((client) => {
+    const db = client.db('codecation1');
+    db.collection('recipes')
+      .deleteOne({ recipe_id: intRecipeID })
+      .then((mongoResponse) => {
+        // const { ops } = mongoResponse || {};
+        // const insertedObject = ops[0] || {};
+        // res.data = insertedObject;
+        res.data = { status: 200 };
+        next();
+      })
+      .catch(findError => next(findError));
+  })
+    .catch(dbError => next(dbError));
+}
+
 module.exports = {
   sendTestJsonResponse,
   getAllCategories,
@@ -125,4 +146,5 @@ module.exports = {
   getOneRecipe,
   createOneRecipe,
   editOneRecipe,
+  deleteOneRecipe,
 };
