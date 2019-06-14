@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { broswerHistory } from 'react-router';
+import Home from './Home';
 
 class App extends Component {
 	render() {
@@ -11,3 +12,5 @@ class App extends Component {
 			);
 	}
 }
+
+export default App
