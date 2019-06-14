@@ -9,6 +9,7 @@ class Home extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.logIn = this.logIn.bind(this);
   }
 
   handleChange(e, key) {
@@ -16,18 +17,24 @@ class Home extends Component {
     this.setState({ [key]: value });
   }
 
+  logIn(e) {
+    const { logIn, history } = this.props;
+    const { push } = history;
+    const { inputVal } = this.state;
+    logIn(e, inputVal, () => push('/dashboard'));
+  }
+
   render() {
-    const { logIn } = this.props;
     const { inputVal } = this.state;
     return (
       <div>
-        <form onSubmit={e => logIn(e, inputVal)}>
+        <form onSubmit={this.logIn}>
           <input
             type='text'
             name='inputVal'
             placeholder='Username (email)'
             value={inputVal}
-            onChange={e => this.handleChange(e, "inputVal")}
+            onChange={e => this.handleChange(e, 'inputVal')}
           />
           <button type='submit'>Login</button>
         </form>

@@ -65,7 +65,7 @@ function createOneRecipe(req, res, next) {
     db.collection('recipes')
       .insertOne({
         user_id: userID,
-        recipe_id: Date.now(), // TODO: need better unique recipeID
+        recipe_id: Date.now(), // TODO: better unique recipeID
         image_url: imageURL,
         categories,
         title,

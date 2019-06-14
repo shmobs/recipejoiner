@@ -15,13 +15,14 @@ class App extends Component {
     this.logIn = this.logIn.bind(this);
   }
 
-  logIn(e, userID) {
+  logIn(e, userID, callback) {
+    console.log(this.props)
     e.preventDefault();
     console.log(e, userID);
-    this.setState({
+    return this.setState({
       isLoggedIn: true,
       activeUser: userID,
-    }, () => console.log(this.state));
+    }, callback);
   }
 
   render() {
@@ -41,10 +42,21 @@ class App extends Component {
             />
           )}
         />
-        <Route name='dashboard' exact path='/dashboard' render={Dashboard} />
+        <Route
+          name='dashboard'
+          exact
+          path='/dashboard'
+          render={props => (
+            <Dashboard
+              isLoggedIn={isLoggedIn}
+              activeUser={activeUser}
+              {...props}
+            />
+          )}
+        />
       </Router>
     );
   }
 }
 
-export default App
+export default App;
