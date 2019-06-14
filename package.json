@@ -4,33 +4,73 @@
   "description": "OUR FIRST CODECATION!",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -f package-lock.json",
+    "build": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --config webpack.config.js",
+    "deploy": "npm run tailwind:css && npm run clean && npm i --only=dev && NODE_ENV=production webpack --mode production --progress && rm -rf node_modules/ && rm -f package-lock.json && npm i --only=prod",
+    "start": "npm run tailwind:css && node server.js",
+    "rebuild": "npm run tailwind:css && NODE_ENV=production webpack --mode production --progress --colors",
+    "watch": "webpack --mode development --progress --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joepin/codecation-1.git"
+    "url": "git+https://github.com/shmobs/codecation-1.git"
   },
-  "author": "Joey Pinhas",
+  "author": "Perry Raskin, Ari Mendelow, Joey Pinhas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joepin/codecation-1/issues"
+    "url": "https://github.com/shmobs/codecation-1/issues"
   },
-  "homepage": "https://github.com/joepin/codecation-1#readme",
+  "homepage": "https://github.com/shmobs/codecation-1#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-do-expressions": "^7.2.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-function-bind": "^7.2.0",
+    "@babel/plugin-proposal-function-sent": "^7.2.0",
+    "@babel/plugin-proposal-json-strings": "^7.2.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.2.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/plugin-transform-strict-mode": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "tailwindcss": "^1.0.4",
+    "webpack-cli": "^3.3.4"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
     "mongodb": "^3.2.7",
     "morgan": "^1.9.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "webpack": "^4.34.0"
   }
 }
