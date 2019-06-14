@@ -9,7 +9,7 @@ const APP_DIR = path.join(__dirname, './src');
 process.traceDeprecation = true;
 
 // get the node env used to run the script with, and set to development if undefined
-const nodeEnv = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+// const nodeEnv = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 
 const plugins = [
   new ExtractTextPlugin({

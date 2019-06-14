@@ -53,8 +53,6 @@ function getOneRecipe(req, res, next) {
 
 function createOneRecipe(req, res, next) {
   const { userID,
-    recipeID,
-    image,
     categories,
     title,
     description } = req.body;

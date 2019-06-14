@@ -24,4 +24,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Serve the 'public' directory as static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(history({ logger }));
+
+/* eslint-disable no-console */
 app.listen(PORT, () => console.warn(`listening on port ${PORT}!`));
+/* eslint-enable no-console */
