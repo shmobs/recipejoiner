@@ -6,7 +6,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				// Routes will go here
+				<Route name="home" exact path="/" component={/*todo*/} />
 			</Router>
 			);
 	}
