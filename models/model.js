@@ -51,9 +51,44 @@ function getOneRecipe(req, res, next) {
 	.catch(dbError => next(dbError));
 }
 
+function createOneRecipe(req, res, next) {
+	const { 
+		userID,
+		recipeID, 
+		image, 
+		categories, 
+		title, 
+		description } = req.body;
+
+	//TODO: convert uploaded image into a URL
+	const imageURL = '';
+
+	getDB().then((client) => {
+		const db = client.db('codecation1');
+		db.collection('recipes')
+		.insertOne({
+			user_id: userID,
+			recipe_id: Date.now(), //TODO: need better unique recipeID
+			image_url: imageURL, 
+			categories: categories, 
+			title: title, 
+			description: description
+		})
+		.then((mongoResponse) => {
+			const { ops } = mongoResponse || {};
+			const insertedObject = ops[0] || {};
+			res.data = insertedObject;
+			next();
+		})
+		.catch(findError => next(findError));
+	})
+	.catch(dbError => next(dbError));
+}
+
 module.exports = {
 	sendTestJsonResponse,
 	getAllCategories,
 	getAllRecipes,
 	getOneRecipe,
+	createOneRecipe,
 }
