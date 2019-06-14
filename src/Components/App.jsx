@@ -8,7 +8,6 @@ class App extends Component {
 		return (
 			<Router>
 				<Route name="home" exact path="/" component={ Home } />
-				<Route name="upload" path="/upload" component={/*todo*/} />
 			</Router>
 			);
 	}
