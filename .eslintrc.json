@@ -85,10 +85,10 @@
 			}
 		],
 		"react/button-has-type": [
-			true
+			"error"
 		],
 		"react/jsx-one-expression-per-line": [
-			true,
+			"error",
 			{
 				"allow": "single-child"
 			}
