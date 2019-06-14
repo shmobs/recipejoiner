@@ -20,7 +20,40 @@ function getAllCategories(req, res, next) {
 	.catch(dbError => next(dbError));
 }
 
+function getAllRecipes(req, res, next) {
+	getDB().then((client) => {
+		const db = client.db('codecation1');
+		db.collection('recipes')
+		.find({})
+		.toArray()
+		.then((data) => {
+			res.data = data;
+			next();
+		})
+		.catch(findError => next(findError));
+	})
+	.catch(dbError => next(dbError));
+}
+
+function getOneRecipe(req, res, next) {
+	const id = parseInt(req.params.id, 10);
+	getDB().then((client) => {
+		const db = client.db('codecation1');
+		db.collection('recipes')
+		.find({ recipe_id: id })
+		.toArray()
+		.then((data) => {
+			res.data = data;
+			next();
+		})
+		.catch(findError => next(findError));
+	})
+	.catch(dbError => next(dbError));
+}
+
 module.exports = {
 	sendTestJsonResponse,
 	getAllCategories,
+	getAllRecipes,
+	getOneRecipe,
 }

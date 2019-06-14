@@ -7,5 +7,7 @@ function sendAsJSON(req, res, next) {
 
 router.get('/test', model.sendTestJsonResponse);
 router.get('/categories', model.getAllCategories, sendAsJSON);
+router.get('/recipes/:id', model.getOneRecipe, sendAsJSON);
+router.get('/recipes', model.getAllRecipes, sendAsJSON);
 
 module.exports = router;
