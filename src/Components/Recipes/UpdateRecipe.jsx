@@ -8,6 +8,7 @@ class UpdateRecipe extends Component {
       title: '',
       description: '',
       categories: [],
+      imageURL: '',
     };
     this.submitUpdateRecipe = this.submitUpdateRecipe.bind(this);
   }
@@ -24,11 +25,12 @@ class UpdateRecipe extends Component {
     fetch(`/api/recipes/${id}?user=${user}`)
       .then(r => r.json())
       .then((data) => {
-        const { title, description, categories } = data;
+        const { title, description, categories, image_url: imageURL } = data;
         this.setState({
           title,
           description,
           categories,
+          imageURL,
         });
       })
       .catch((err) => {
@@ -43,17 +45,19 @@ class UpdateRecipe extends Component {
     const { push } = history || {};
     const { params } = match || {};
     const { id } = params || {};
-    const { title, description, categories, file } = recipe;
+    const { title, description, categories, file, imageURL } = recipe;
 
     if (!title || !description) {
       return false;
     }
+    console.log(recipe)
 
     const data = new FormData();
     data.append('title', title);
     data.append('description', description);
     data.append('categories', categories);
     data.append('image', file);
+    data.append('imageURL', imageURL);
 
     fetch(`/api/recipes/${id}?user=${activeUser}`, {
       method: 'PUT',
@@ -66,11 +70,12 @@ class UpdateRecipe extends Component {
   }
 
   render() {
-    const { title, description, categories } = this.state;
+    const { title, description, categories, imageURL } = this.state;
     const recipe = {
       title,
       description,
       categories,
+      imageURL,
     };
     return (
       <Form

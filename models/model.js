@@ -102,14 +102,13 @@ function createOneRecipe(req, res, next) {
 }
 
 function editOneRecipe(req, res, next) {
+  console.log('here', req.params, req.query, req.body)
   const { id } = req.params;
   const { userID,
     categories,
     title,
-    description } = req.body;
-
-  // TODO: convert uploaded image into a URL
-  const imageURL = '';
+    description,
+    imageURL } = req.body;
 
   const finalUserID = userID || req.query.user;
 

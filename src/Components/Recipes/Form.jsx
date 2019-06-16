@@ -23,12 +23,13 @@ class Form extends Component {
     const { recipe: newRecipe } = this.props;
     const { recipe: oldRecipe } = prevProps;
     if (newRecipe !== oldRecipe) {
-      const { categories, title, description } = newRecipe || {};
+      const { categories, title, description, imageURL } = newRecipe || {};
       this.setState({
         category: '',
         categories: categories || [],
         title: title || '',
         description: description || '',
+        imageURL: imageURL || '',
       });
     }
   }
@@ -64,9 +65,9 @@ class Form extends Component {
   }
 
   handleSubmitWrapper(e) {
-    const { categories, title, description } = this.state;
+    const { categories, title, description, imageURL } = this.state;
     const file = this.fileInputRef.current.files[0];
-    const recipe = { categories, title, description, file };
+    const recipe = { categories, title, description, file, imageURL };
     const { handleSubmit } = this.props;
     handleSubmit(e, recipe);
   }
