@@ -6,6 +6,7 @@ class Dashboard extends Component {
 
     this.state = {
       categories: [],
+      recipes: [],
     };
   }
 
@@ -16,16 +17,36 @@ class Dashboard extends Component {
         this.setState({ categories: data.categories });
       })
       .catch(err => console.log(err));
+
+    fetch('/api/recipes')
+      .then(r => r.json())
+      .then((data) => {
+        this.setState({ recipes: data });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
     const { categories } = this.state;
+    console.log(categories);
     const mappedCategories = categories.map(category => <li key={category}>{category}</li>);
+
+    const { recipes } = this.state;
+    console.log(recipes);
+    const mappedRecipes = recipes.map((recipe) => {
+      return <li key={recipe.recipe_id}>{recipe.title}</li>;
+    });
 
     return (
       <div>
-        <h1>Categories</h1>
-        <ul>{mappedCategories}</ul>
+        <div>
+          <h1>Categories</h1>
+          <ul>{mappedCategories}</ul>
+        </div>
+        <div>
+          <h1>Recipes</h1>
+          <ul>{mappedRecipes}</ul>
+        </div>
       </div>
     );
   }
