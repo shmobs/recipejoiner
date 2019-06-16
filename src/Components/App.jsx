@@ -7,7 +7,6 @@ import Dashboard from './Dashboard.jsx';
 import Recipe from './Recipe.jsx';
 import CreateRecipe from './Recipes/CreateRecipe.jsx';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
