@@ -32,6 +32,10 @@ class Recipe extends Component {
     return (
       <div>
         <h1>{data.title}</h1>
+        <img
+          src={data.image_url}
+          alt={data.title}
+        />
         <p>{data.description}</p>
       </div>
     );
