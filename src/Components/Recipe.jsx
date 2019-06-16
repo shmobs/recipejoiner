@@ -37,6 +37,7 @@ class Recipe extends Component {
           alt={data.title}
         />
         <p>{data.description}</p>
+        <button type='button'>Edit</button>
       </div>
     );
   }
