@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import PrivateRoute from './PrivateRoute.jsx';
 import NavBar from './NavBar.jsx';
 import Home from './Home.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -46,11 +47,12 @@ class App extends Component {
             />
           )}
         />
-        <Route
+        <PrivateRoute
           name='dashboard'
           exact
           path='/dashboard'
-          render={props => (
+          authenticated={isLoggedIn}
+          component={props => (
             <Dashboard
               isLoggedIn={isLoggedIn}
               activeUser={activeUser}
@@ -70,11 +72,12 @@ class App extends Component {
             />
           )}
         />
-        <Route
+        <PrivateRoute
           name='create'
           exact
           path='/create'
-          render={props => (
+          authenticated={isLoggedIn}
+          component={props => (
             <CreateRecipe
               isLoggedIn={isLoggedIn}
               activeUser={activeUser}
