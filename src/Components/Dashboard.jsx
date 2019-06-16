@@ -39,7 +39,11 @@ class Dashboard extends Component {
     const mappedRecipes = recipes.map((recipe) => {
       return (
         <li key={recipe.recipe_id}>
-          <Link to={`/recipes/${recipe.recipe_id}`}>{recipe.title}</Link>
+          <Link
+            to={`/recipes/${recipe.recipe_id}`}
+          >
+            {recipe.title}
+          </Link>
         </li>
       );
     });
