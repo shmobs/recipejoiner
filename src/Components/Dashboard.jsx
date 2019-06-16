@@ -12,7 +12,9 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/categories')
+    const { activeUser: user } = this.props;
+
+    fetch(`/api/categories?user=${user}`)
       .then(r => r.json())
       .then((data) => {
         this.setState({ categories: data.categories });
