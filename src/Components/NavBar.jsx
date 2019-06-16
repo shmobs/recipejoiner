@@ -15,6 +15,7 @@ function NavBar() {
         <nav id='headerButtons' className='font-medium antialiased mt-4 sm:mt-0'>
           <NavLink className='nav-btn' to='/' activeClassName='active'>Home</NavLink>
           <NavLink className='nav-btn' to='/dashboard' activeClassName='active'>Dashboard</NavLink>
+          <NavLink className='nav-btn' to='/create' activeClassName='active'>New Recipe</NavLink>
         </nav>
       </header>
     </div>
