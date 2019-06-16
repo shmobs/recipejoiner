@@ -18,6 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/shmobs/codecation-1.git"
   },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
+  },
   "author": "Perry Raskin, Ari Mendelow, Joey Pinhas",
   "license": "MIT",
   "bugs": {

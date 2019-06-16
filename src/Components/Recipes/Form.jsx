@@ -48,7 +48,8 @@ class Form extends Component {
       if (category.length > 1) {
         // want the current 'category' (or multiple), but without the comma at the end. Also, remove any leading/trailing whitespace
         const newCategories = category.split(',').map(item => item.trim());
-        const newCategoriesState = [...categories, ...newCategories];
+        const AllCategories = [...categories, ...newCategories];
+        const newCategoriesState = [...new Set(AllCategories)]; // Want only unique categories
         this.setState({ categories: newCategoriesState });
       }
     } else {

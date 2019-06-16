@@ -16,6 +16,11 @@ router.route('/recipes/:id')
   .put(model.editOneRecipe, model.getOneRecipe, sendAsJSON)
   .delete(model.deleteOneRecipe, sendAsJSON);
 
+router.route('/recipe/:id')
+  .get(model.getOneRecipe, sendAsJSON)
+  .put(model.editOneRecipe, model.getOneRecipe, sendAsJSON)
+  .delete(model.deleteOneRecipe, sendAsJSON);
+
 router.route('/recipes')
   .get(model.getAllRecipes, sendAsJSON)
   .post(model.createOneRecipe, sendAsJSON);
