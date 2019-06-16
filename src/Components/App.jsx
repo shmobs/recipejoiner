@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { browserHistory } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import Home from './Home';
 import Dashboard from './Dashboard';
@@ -20,9 +19,7 @@ class App extends Component {
   }
 
   logIn(e, userID, callback) {
-    console.log(this.props)
     e.preventDefault();
-    console.log(e, userID);
     return this.setState({
       isLoggedIn: true,
       activeUser: userID,
