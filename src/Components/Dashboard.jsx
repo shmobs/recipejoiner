@@ -8,7 +8,10 @@ class Dashboard extends Component {
     this.state = {
       categories: [],
       recipes: [],
+      filters: [],
     };
+
+    this.filterByCategory = this.filterByCategory.bind(this);
   }
 
   componentDidMount() {
@@ -29,14 +32,50 @@ class Dashboard extends Component {
       .catch(err => console.log(err));
   }
 
+  filterByCategory(categoryName) {
+    const { filters } = this.state;
+
+    // const newFilters = [];
+    // filters.forEach(filter => newFilters.push(filter))
+    // newFilters.push(categoryName)
+    let newFilters;
+    if (filters.includes(categoryName)) {
+      const index = filters.indexOf(categoryName);
+      const before = filters.slice(0, index);
+      const after = filters.slice(index + 1, filters.length - 1);
+      newFilters = [...before, ...after];
+    } else {
+      newFilters = [...filters, categoryName];
+    }
+
+    this.setState({ filters: newFilters });
+  }
+
   render() {
     const { categories } = this.state;
     const mappedCategories = categories.map(category => (
-      <li key={category}>{category}</li>
+      <span key={category}>
+        <button
+          type='button'
+          onClick={() => this.filterByCategory(category)}
+        >
+          {category}
+        </button>
+      </span>
     ));
 
-    const { recipes } = this.state;
-    const mappedRecipes = recipes.map(recipe => (
+    const { recipes, filters } = this.state;
+    const filteredRecipes = recipes.filter((recipe) => {
+      let show = false;
+      const { categories: recipeCategories } = recipe;
+      for (let i = 0; i < filters.length && !show; i++) {
+        if (recipeCategories.includes(filters[i])) {
+          show = true;
+        }
+      }
+      return show;
+    });
+    const mappedRecipes = filteredRecipes.map(recipe => (
       <li key={recipe.recipe_id}>
         <Link
           to={`/recipes/${recipe.recipe_id}`}
