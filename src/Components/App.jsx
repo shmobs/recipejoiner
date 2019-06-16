@@ -10,9 +10,10 @@ import CreateRecipe from './Recipes/CreateRecipe.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
+    const activeUser = sessionStorage.getItem('activeUser');
     this.state = {
-      isLoggedIn: false,
-      activeUser: '',
+      isLoggedIn: !!activeUser,
+      activeUser: activeUser || '',
     };
 
     this.logIn = this.logIn.bind(this);
@@ -20,6 +21,7 @@ class App extends Component {
 
   logIn(e, userID, callback) {
     e.preventDefault();
+    sessionStorage.setItem('activeUser', userID);
     return this.setState({
       isLoggedIn: true,
       activeUser: userID,
