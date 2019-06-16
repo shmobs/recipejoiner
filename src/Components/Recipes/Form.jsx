@@ -91,18 +91,21 @@ class Form extends Component {
           onChange={this.handleSimpleTextBoxChange}
           placeholder='Recipe Title'
         />
+        <br />
         <input
           name='description'
           value={description}
           onChange={this.handleSimpleTextBoxChange}
           placeholder='Recipe Description'
         />
+        <br />
         <input
           name='category'
           value={category}
           onChange={this.handleCategoriesChange}
           placeholder='Enter categories, separated by comma'
         />
+        <br />
         <input
           name='image'
           type='file'
