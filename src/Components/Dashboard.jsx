@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -29,12 +30,18 @@ class Dashboard extends Component {
   render() {
     const { categories } = this.state;
     console.log(categories);
-    const mappedCategories = categories.map(category => <li key={category}>{category}</li>);
+    const mappedCategories = categories.map((category) => {
+      return <li key={category}>{category}</li>;
+    });
 
     const { recipes } = this.state;
     console.log(recipes);
     const mappedRecipes = recipes.map((recipe) => {
-      return <li key={recipe.recipe_id}>{recipe.title}</li>;
+      return (
+        <li key={recipe.recipe_id}>
+          <Link to={`/recipes/${recipe.recipe_id}`}>{recipe.title}</Link>
+        </li>
+      );
     });
 
     return (
