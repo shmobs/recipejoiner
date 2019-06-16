@@ -7,7 +7,7 @@ function sendTestJsonResponse(req, res, next) {
 
 function getAllCategories(req, res, next) {
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .distinct('categories', {})
       .then((data) => {
@@ -21,7 +21,7 @@ function getAllCategories(req, res, next) {
 
 function getAllRecipes(req, res, next) {
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .find({})
       .toArray()
@@ -39,7 +39,7 @@ function getOneRecipe(req, res, next) {
   const { id } = params || {};
   const intID = parseInt(id, 10);
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .findOne({ recipe_id: intID })
       .then((data) => {
@@ -61,7 +61,7 @@ function createOneRecipe(req, res, next) {
   const imageURL = '';
 
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .insertOne({
         user_id: userID,
@@ -95,7 +95,7 @@ function editOneRecipe(req, res, next) {
   const intRecipeID = parseInt(id, 10);
 
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .updateOne({ recipe_id: intRecipeID }, {
         $set: {
@@ -124,7 +124,7 @@ function deleteOneRecipe(req, res, next) {
   const intRecipeID = parseInt(id, 10);
 
   getDB().then((client) => {
-    const db = client.db('codecation1');
+    const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
       .deleteOne({ recipe_id: intRecipeID })
       .then((mongoResponse) => {
