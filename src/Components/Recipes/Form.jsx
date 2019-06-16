@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categories from './Categories';
 
 class Form extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Form extends Component {
     this.handleSimpleTextBoxChange = this.handleSimpleTextBoxChange.bind(this);
     this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
     this.handleSubmitWrapper = this.handleSubmitWrapper.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -66,6 +68,16 @@ class Form extends Component {
     handleSubmit(e, recipe)
   }
 
+  deleteCategory(ind) {
+    console.log('in delete', this.state);
+    const { categories } = this.state;
+    console.log('categories', categories);
+    const newCategories = categories.splice(ind, 1);
+    console.log('newCategories', newCategories);
+
+    this.setState = ({ categories: newCategories || [] });
+  }
+
   render() {
     const { category, categories, title, description } = this.state;
     return (
@@ -89,11 +101,7 @@ class Form extends Component {
           placeholder='Enter categories, separated by comma'
         />
         <br />
-        {/* will need to actually format this */}
-        <p>
-          Categories:
-          {categories}
-        </p>
+        <Categories categories={categories} deleteCategory={this.deleteCategory} />
         <button type='submit'><b>Submit</b></button>
       </form>
     );
