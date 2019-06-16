@@ -40,14 +40,15 @@ class Form extends Component {
     const { value: category } = e.target;
     const { categories } = this.state;
 
-    // If the last character in the string is a comma, clear the input and add the current category to the 'categories' array
-    if (category[category.length - 1] === ',') {
+    // If the string has a comma in it, clear the input and add the current category(ies) to the 'categories' array
+    if (category.includes(',')) {
       this.setState({ category: '' });
       // Make sure that there is something OTHER than a comma as well
       if (category.length > 1) {
-        // want the current 'category', but without the comma at the end. Also, remove any leading/trailing whitespace
-        const newCategories = [...categories, category.substring(0, category.length - 1).trim()];
-        this.setState({ categories: newCategories });
+        // want the current 'category' (or multiple), but without the comma at the end. Also, remove any leading/trailing whitespace
+        const newCategories = category.split(',').map(item => item.trim());
+        const newCategoriesState = [...categories, ...newCategories];
+        this.setState({ categories: newCategoriesState });
       }
     } else {
       this.setState({
