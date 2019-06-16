@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import Recipe from './Recipe';
+import CreateRecipe from './Recipes/CreateRecipe';
 
 
 class App extends Component {
@@ -65,6 +66,18 @@ class App extends Component {
             path='/recipes/:id'
             render={props => (
               <Recipe
+                isLoggedIn={isLoggedIn}
+                activeUser={activeUser}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            name='create'
+            exact
+            path='/create'
+            render={props => (
+              <CreateRecipe
                 isLoggedIn={isLoggedIn}
                 activeUser={activeUser}
                 {...props}
