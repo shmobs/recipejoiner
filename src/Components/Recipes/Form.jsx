@@ -65,7 +65,7 @@ class Form extends Component {
     const { categories, title, description } = this.state;
     const recipe = { categories, title, description };
     const { handleSubmit } = this.props;
-    handleSubmit(e, recipe)
+    handleSubmit(e, recipe);
   }
 
   deleteCategory(ind) {
