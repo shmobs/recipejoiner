@@ -43,22 +43,21 @@ class UpdateRecipe extends Component {
     const { push } = history || {};
     const { params } = match || {};
     const { id } = params || {};
-    const { title, description, categories } = recipe;
+    const { title, description, categories, file } = recipe;
 
     if (!title || !description) {
       return false;
     }
 
+    const data = new FormData();
+    data.append('title', title);
+    data.append('description', description);
+    data.append('categories', categories);
+    data.append('image', file);
+
     fetch(`/api/recipes/${id}?user=${activeUser}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        categories,
-      }),
+      body: data,
     })
       .then(r => r.json())
       .then(() => push('/dashboard'))

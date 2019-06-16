@@ -12,6 +12,7 @@ class Form extends Component {
       title: title || '',
       description: description || '',
     };
+    this.fileInputRef = React.createRef();
     this.handleSimpleTextBoxChange = this.handleSimpleTextBoxChange.bind(this);
     this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
     this.handleSubmitWrapper = this.handleSubmitWrapper.bind(this);
@@ -63,7 +64,8 @@ class Form extends Component {
 
   handleSubmitWrapper(e) {
     const { categories, title, description } = this.state;
-    const recipe = { categories, title, description };
+    const file = this.fileInputRef.current.files[0];
+    const recipe = { categories, title, description, file };
     const { handleSubmit } = this.props;
     handleSubmit(e, recipe);
   }
@@ -96,6 +98,11 @@ class Form extends Component {
           value={category}
           onChange={this.handleCategoriesChange}
           placeholder='Enter categories, separated by comma'
+        />
+        <input
+          name='image'
+          type='file'
+          ref={this.fileInputRef}
         />
         <br />
         <Categories categories={categories} deleteCategory={this.deleteCategory} />
