@@ -7,7 +7,6 @@ function CreateRecipe(props) {
 
   function submitNewRecipe(e, recipe) {
     e.preventDefault();
-    console.log('in submit', recipe);
     const { title, description } = recipe || {};
 
     if (!title || !description) {

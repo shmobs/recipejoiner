@@ -43,12 +43,10 @@ function getOneRecipe(req, res, next) {
   const { id } = params || {};
   const intID = parseInt(id, 10);
 
-  const { user: userID } = req.query;
-  // TODO: add input validation
   getDB().then((client) => {
     const db = client.db(process.env.MONGODB_DBNAME);
     db.collection('recipes')
-      .findOne({ recipe_id: intID, user_id: userID })
+      .findOne({ recipe_id: intID })
       .then((data) => {
         res.data = data;
         next();
