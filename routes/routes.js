@@ -1,9 +1,25 @@
 const router = require('express').Router();
+const multer = require('multer');
+const path = require('path');
+
 const model = require('../models/model.js');
+const cloudinary = require('../services/cloudinary.js');
 
 function sendAsJSON(req, res, next) {
   res.json(res.data);
 }
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../uploads/'));
+  },
+  filename: (req, file, cb) => {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
+  },
+});
+
+const upload = multer({ storage });
 
 router.route('/test')
   .get(model.sendTestJsonResponse);
@@ -23,6 +39,6 @@ router.route('/recipe/:id')
 
 router.route('/recipes')
   .get(model.getAllRecipes, sendAsJSON)
-  .post(model.createOneRecipe, sendAsJSON);
+  .post(upload.single('image'), model.generateRecipeID, cloudinary.uploadImage, model.createOneRecipe, sendAsJSON);
 
 module.exports = router;

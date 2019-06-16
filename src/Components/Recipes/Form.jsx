@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categories from './Categories';
 
 class Form extends Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class Form extends Component {
       title: title || '',
       description: description || '',
     };
+    this.fileInputRef = React.createRef();
     this.handleSimpleTextBoxChange = this.handleSimpleTextBoxChange.bind(this);
     this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
     this.handleSubmitWrapper = this.handleSubmitWrapper.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -61,9 +64,17 @@ class Form extends Component {
 
   handleSubmitWrapper(e) {
     const { categories, title, description } = this.state;
-    const recipe = { categories, title, description };
+    const file = this.fileInputRef.current.files[0];
+    const recipe = { categories, title, description, file };
     const { handleSubmit } = this.props;
-    handleSubmit(e, recipe)
+    handleSubmit(e, recipe);
+  }
+
+  deleteCategory(ind) {
+    const { categories } = this.state;
+    const newCategories = categories.splice(ind, 1);
+
+    this.setState = ({ categories: newCategories || [] });
   }
 
   render() {
@@ -88,12 +99,13 @@ class Form extends Component {
           onChange={this.handleCategoriesChange}
           placeholder='Enter categories, separated by comma'
         />
+        <input
+          name='image'
+          type='file'
+          ref={this.fileInputRef}
+        />
         <br />
-        {/* will need to actually format this */}
-        <p>
-          Categories:
-          {categories}
-        </p>
+        <Categories categories={categories} deleteCategory={this.deleteCategory} />
         <button type='submit'><b>Submit</b></button>
       </form>
     );
