@@ -50,9 +50,13 @@ class Form extends Component {
       // Make sure that there is something OTHER than a comma as well
       if (category.length > 1) {
         // want the current 'category' (or multiple), but without the comma at the end. Also, remove any leading/trailing whitespace
+        console.log('category', category);
         const newCategories = category.split(',').map(item => item.trim());
+        console.log('new cats', newCategories);
         const AllCategories = [...categories, ...newCategories];
+        console.log('all cats', AllCategories);
         const newCategoriesState = [...new Set(AllCategories)]; // Want only unique categories
+        console.log('new categories', newCategoriesState);
         this.setState({ categories: newCategoriesState });
       }
     } else {
@@ -106,6 +110,7 @@ class Form extends Component {
         />
         <br />
         <Categories categories={categories} deleteCategory={this.deleteCategory} />
+        <br />
         <button type='submit'><b>Submit</b></button>
       </form>
     );

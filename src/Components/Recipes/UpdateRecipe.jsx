@@ -60,7 +60,7 @@ class UpdateRecipe extends Component {
       body: data,
     })
       .then(r => r.json())
-      .then(() => push('/dashboard'))
+      .then(() => push(`/recipes/${id}`))
       .catch(err => console.error(err));
     return true;
   }

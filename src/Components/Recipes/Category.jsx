@@ -9,7 +9,7 @@ function Category(props) {
         type='button'
         onClick={handleDelete}
       >
-        x
+        &nbsp;<b>x</b>&nbsp;&nbsp;
       </button>
     </span>
   );
