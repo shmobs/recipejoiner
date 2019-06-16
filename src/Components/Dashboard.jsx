@@ -34,10 +34,6 @@ class Dashboard extends Component {
 
   filterByCategory(categoryName) {
     const { filters } = this.state;
-
-    // const newFilters = [];
-    // filters.forEach(filter => newFilters.push(filter))
-    // newFilters.push(categoryName)
     let newFilters;
     if (filters.includes(categoryName)) {
       const index = filters.indexOf(categoryName);
@@ -65,16 +61,18 @@ class Dashboard extends Component {
     ));
 
     const { recipes, filters } = this.state;
-    const filteredRecipes = recipes.filter((recipe) => {
-      let show = false;
-      const { categories: recipeCategories } = recipe;
-      for (let i = 0; i < filters.length && !show; i++) {
-        if (recipeCategories.includes(filters[i])) {
-          show = true;
+    const filteredRecipes = filters.length === 0
+      ? recipes
+      : recipes.filter((recipe) => {
+        let show = false;
+        const { categories: recipeCategories } = recipe;
+        for (let i = 0; i < filters.length && !show; i++) {
+          if (recipeCategories.includes(filters[i])) {
+            show = true;
+          }
         }
-      }
-      return show;
-    });
+        return show;
+      });
     const mappedRecipes = filteredRecipes.map(recipe => (
       <li key={recipe.recipe_id}>
         <Link
