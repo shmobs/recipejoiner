@@ -13,6 +13,7 @@ class Form extends Component {
     };
     this.handleSimpleTextBoxChange = this.handleSimpleTextBoxChange.bind(this);
     this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
+    this.handleSubmitWrapper = this.handleSubmitWrapper.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -57,11 +58,17 @@ class Form extends Component {
     }
   }
 
+  handleSubmitWrapper(e) {
+    const { categories, title, description } = this.state;
+    const recipe = { categories, title, description };
+    const { handleSubmit } = this.props;
+    handleSubmit(e, recipe)
+  }
+
   render() {
     const { category, categories, title, description } = this.state;
-    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={this.handleSubmitWrapper}>
         <input
           name='title'
           value={title}
