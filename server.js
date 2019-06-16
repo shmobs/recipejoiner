@@ -21,11 +21,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 // Set up defined routes on the /api path
 app.use('/api', routes);
+// when ther's no match in the above routes return the index.html file
+app.use(history());
+
 // Serve the 'dist' directory as static files
 app.use(express.static(path.join(__dirname, 'dist')));
 // Serve the 'public' directory as static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(history({ logger }));
 
 /* eslint-disable no-console */
 app.listen(PORT, () => console.warn(`listening on port ${PORT}!`));
