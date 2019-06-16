@@ -12,6 +12,15 @@ class Home extends Component {
     this.logIn = this.logIn.bind(this);
   }
 
+  componentWillMount() {
+    const { isLoggedIn, history } = this.props;
+    const { push } = history;
+
+    if (isLoggedIn) {
+      push('/dashboard');
+    }
+  }
+
   handleChange(e, key) {
     const { value } = e.target;
     this.setState({ [key]: value });
@@ -21,6 +30,7 @@ class Home extends Component {
     const { logIn, history } = this.props;
     const { push } = history;
     const { inputVal } = this.state;
+    // this is the logIn function that was passed down through props, not a recursive call
     logIn(e, inputVal, () => push('/dashboard'));
   }
 

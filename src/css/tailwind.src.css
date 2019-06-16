@@ -1,3 +1,18 @@
 @tailwind base;
+
+/* Navbar buttons */
+.nav-btn {
+	@apply self-center text-gray-700 no-underline mx-2;
+}
+.nav-btn:active {
+	@apply text-gray-100;
+}
+.nav-btn:not(.active):not(:active):hover {
+	@apply text-gray-500;
+}
+.active {
+	@apply text-gray-100;
+}
+
 @tailwind components;
 @tailwind utilities;
