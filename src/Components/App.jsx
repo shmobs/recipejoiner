@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { browserHistory } from 'react-router';
+import NavBar from './NavBar';
 import Home from './Home';
 import Dashboard from './Dashboard';
+
 
 class App extends Component {
   constructor(props) {
@@ -28,33 +30,36 @@ class App extends Component {
   render() {
     const { isLoggedIn, activeUser } = this.state;
     return (
-      <Router>
-        <Route
-          name='home'
-          exact
-          path='/'
-          render={props => (
-            <Home
-              isLoggedIn={isLoggedIn}
-              activeUser={activeUser}
-              logIn={this.logIn}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          name='dashboard'
-          exact
-          path='/dashboard'
-          render={props => (
-            <Dashboard
-              isLoggedIn={isLoggedIn}
-              activeUser={activeUser}
-              {...props}
-            />
-          )}
-        />
-      </Router>
+      <React.Fragment>
+        <Router>
+          <NavBar />
+          <Route
+            name='home'
+            exact
+            path='/'
+            render={props => (
+              <Home
+                isLoggedIn={isLoggedIn}
+                activeUser={activeUser}
+                logIn={this.logIn}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            name='dashboard'
+            exact
+            path='/dashboard'
+            render={props => (
+              <Dashboard
+                isLoggedIn={isLoggedIn}
+                activeUser={activeUser}
+                {...props}
+              />
+            )}
+          />
+        </Router>
+      </React.Fragment>
     );
   }
 }

@@ -6,7 +6,6 @@ const template          = require('html-webpack-template');
 
 const BUILD_DIR = path.join(__dirname, './dist');
 const APP_DIR = path.join(__dirname, './src');
-process.traceDeprecation = true;
 
 // get the node env used to run the script with, and set to development if undefined
 // const nodeEnv = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
@@ -54,17 +53,10 @@ const plugins = [
 // Common rules
 const rules = [
   {
-    test: /\b(?!global\.)(\w+(?:-\w+)*)(?=\.css\b)/,
-    loader: ExtractTextPlugin.extract({
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-    }),
-  },
-  {
-    test: /\.global\.css$/,
-    loader: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: 'css-loader',
+      use: ['css-loader'],
     }),
   },
   {
@@ -110,7 +102,9 @@ const rules = [
 
 module.exports = {
   context: APP_DIR,
-  entry: './index.js',
+  entry: {
+    main: './index.js',
+  },
   output: {
     path: BUILD_DIR,
     publicPath: '/',
@@ -120,7 +114,7 @@ module.exports = {
     rules,
   },
   resolve: {
-    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx', '.json'],
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx', '.json', '.css'],
     modules: [
       path.resolve(__dirname, 'node_modules'),
       APP_DIR,
