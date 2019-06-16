@@ -68,7 +68,7 @@ class Form extends Component {
     handleSubmit(e, recipe)
   }
 
-  deleteCategory(ind) {\
+  deleteCategory(ind) {
     const { categories } = this.state;
     const newCategories = categories.splice(ind, 1);
 
