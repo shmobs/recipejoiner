@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import NavBar from './NavBar';
 import Home from './Home';
 import Dashboard from './Dashboard';
+import Recipe from './Recipe';
 
 
 class App extends Component {
@@ -52,6 +53,18 @@ class App extends Component {
             path='/dashboard'
             render={props => (
               <Dashboard
+                isLoggedIn={isLoggedIn}
+                activeUser={activeUser}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            name='recipe'
+            exact
+            path='/recipes/:id'
+            render={props => (
+              <Recipe
                 isLoggedIn={isLoggedIn}
                 activeUser={activeUser}
                 {...props}
