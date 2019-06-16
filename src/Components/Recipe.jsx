@@ -29,7 +29,6 @@ class Recipe extends Component {
 
   render() {
     const { data } = this.state;
-    console.log(data);
     return (
       <div>
         <h1>{data.title}</h1>
