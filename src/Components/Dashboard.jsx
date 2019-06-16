@@ -21,7 +21,7 @@ class Dashboard extends Component {
       })
       .catch(err => console.log(err));
 
-    fetch('/api/recipes')
+    fetch(`/api/recipes?user=${user}`)
       .then(r => r.json())
       .then((data) => {
         this.setState({ recipes: data });

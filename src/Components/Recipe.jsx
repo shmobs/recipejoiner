@@ -15,11 +15,11 @@ class Recipe extends Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
+    const { match, activeUser: user } = this.props;
     const { params } = match || {};
     const { id } = params || {};
 
-    fetch(`/api/recipes/${id}`)
+    fetch(`/api/recipes/${id}?user=${user}`)
       .then(r => r.json())
       .then((data) => {
         this.setState({ data });
@@ -29,6 +29,7 @@ class Recipe extends Component {
 
   render() {
     const { data } = this.state;
+    console.log(data);
     return (
       <div>
         <h1>{data.title}</h1>
