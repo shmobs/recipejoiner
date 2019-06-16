@@ -56,14 +56,26 @@ function getOneRecipe(req, res, next) {
     .catch(dbError => next(dbError));
 }
 
+function generateRecipeID(req, res, next) {
+  // TODO: better unique recipeID
+  res.recipeID = Date.now();
+  next();
+}
+
 function createOneRecipe(req, res, next) {
   const { userID,
     categories,
     title,
     description } = req.body;
+  let newCategories;
+  if (Array.isArray(categories)) {
+    newCategories = categories;
+  } else {
+    newCategories = categories.replace(/(\[)|(\])/g, '').split(',');
+  }
 
-  // TODO: convert uploaded image into a URL
-  const imageURL = '';
+  const { cloudinaryResponse, recipeID } = res;
+  const { url: imageURL } = cloudinaryResponse;
 
   const finalUserID = userID || req.query.user;
 
@@ -72,9 +84,9 @@ function createOneRecipe(req, res, next) {
     db.collection('recipes')
       .insertOne({
         user_id: finalUserID,
-        recipe_id: Date.now(), // TODO: better unique recipeID
+        recipe_id: recipeID,
         image_url: imageURL,
-        categories,
+        categories: newCategories,
         title,
         description,
       })
@@ -156,6 +168,7 @@ module.exports = {
   getAllCategories,
   getAllRecipes,
   getOneRecipe,
+  generateRecipeID,
   createOneRecipe,
   editOneRecipe,
   deleteOneRecipe,
