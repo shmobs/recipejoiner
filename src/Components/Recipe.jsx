@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import DeleteRecipe from './Recipes/DeleteRecipe.jsx';
 
 class Recipe extends Component {
   constructor(props) {
     super(props);
 
-    const { match } = props;
-    const { params } = match || {};
-    const { id } = params || {};
-
     this.state = {
-      id,
       data: {},
     };
   }
@@ -30,6 +26,9 @@ class Recipe extends Component {
 
   render() {
     const { data } = this.state;
+    const { history } = this.props;
+    const { push } = history || {};
+
     return (
       <div>
         <h1>{data.title}</h1>
@@ -39,6 +38,7 @@ class Recipe extends Component {
         />
         <p>{data.description}</p>
         <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
+        <DeleteRecipe data={data} push={push} />
       </div>
     );
   }
