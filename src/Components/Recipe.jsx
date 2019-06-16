@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Recipe extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Recipe extends Component {
           alt={data.title}
         />
         <p>{data.description}</p>
-        <button type='button'>Edit</button>
+        <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import NavBar from './NavBar.jsx';
 import Home from './Home.jsx';
 import Dashboard from './Dashboard.jsx';
 import Recipe from './Recipe.jsx';
+import UpdateRecipe from './Recipes/UpdateRecipe.jsx';
 import CreateRecipe from './Recipes/CreateRecipe.jsx';
 
 class App extends Component {
@@ -66,6 +67,19 @@ class App extends Component {
           path='/recipes/:id'
           render={props => (
             <Recipe
+              isLoggedIn={isLoggedIn}
+              activeUser={activeUser}
+              {...props}
+            />
+          )}
+        />
+        <PrivateRoute
+          name='edit'
+          exact
+          path='/recipes/:id/edit'
+          authenticated={isLoggedIn}
+          component={props => (
+            <UpdateRecipe
               isLoggedIn={isLoggedIn}
               activeUser={activeUser}
               {...props}

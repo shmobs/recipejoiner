@@ -4,14 +4,12 @@ import Form from './Form';
 class UpdateRecipe extends Component {
   constructor(props) {
     super(props);
-
-    const { match } = props;
-    const { params } = match || {};
-    const { id } = params || {};
-
     this.state = {
-      data: {},
+      title: '',
+      description: '',
+      categories: [],
     };
+    this.submitUpdateRecipe = this.submitUpdateRecipe.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +24,12 @@ class UpdateRecipe extends Component {
     fetch(`/api/recipes/${id}?user=${user}`)
       .then(r => r.json())
       .then((data) => {
-        this.setState({ data });
+        const { title, description, categories } = data;
+        this.setState({
+          title,
+          description,
+          categories,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -34,23 +37,28 @@ class UpdateRecipe extends Component {
       });
   }
 
-  submitUpdateRecipe(e) {
+  submitUpdateRecipe(e, recipe) {
     e.preventDefault();
-    const { activeUser, history } = this.props;
-    const { push } = history;
-    const { data: recipe } = this.state;
-    const { title, description } = recipe || {};
+    const { activeUser, history, match } = this.props;
+    const { push } = history || {};
+    const { params } = match || {};
+    const { id } = params || {};
+    const { title, description, categories } = recipe;
 
     if (!title || !description) {
       return false;
     }
 
-    fetch(`/api/recipes?user=${activeUser}`, {
-      method: 'POST',
+    fetch(`/api/recipes/${id}?user=${activeUser}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(recipe),
+      body: JSON.stringify({
+        title,
+        description,
+        categories,
+      }),
     })
       .then(r => r.json())
       .then(() => push('/dashboard'))
@@ -59,7 +67,12 @@ class UpdateRecipe extends Component {
   }
 
   render() {
-    const { data: recipe } = this.state;
+    const { title, description, categories } = this.state;
+    const recipe = {
+      title,
+      description,
+      categories,
+    };
     return (
       <Form
         recipe={recipe}
