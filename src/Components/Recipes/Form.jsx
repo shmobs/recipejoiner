@@ -91,7 +91,8 @@ class Form extends Component {
   render() {
     const { category, categories, title, description, uploadFilePlaceholder } = this.state;
     const labelFormat = 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2';
-    const inputFormat = 'appearance-none block w-full bg-gray-200 text-gray-700 border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-200 focus:bg-white';
+    // const inputFormat = 'border-transparent block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:border-blue-400 focus:outline-none focus:bg-white';
+    const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
     return (
       <form className='mx-auto px-6 sm:px-8 lg:px-12 xl:px-24 lg:max-w-2lg xl:max-w-6xl' onSubmit={this.handleSubmitWrapper}>
         <h1 className='font-bold text-xl'>Add a new recipe!</h1><br />
