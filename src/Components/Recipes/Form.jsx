@@ -82,8 +82,10 @@ class Form extends Component {
   deleteCategory(ind) {
     const { categories } = this.state;
     const newCategories = categories.splice(ind, 1);
-
     this.setState = ({ categories: newCategories || [] });
+
+    // Added this because it wasn't rerendering the categories component on removal of a category
+    this.forceUpdate();
   }
 
   render() {
