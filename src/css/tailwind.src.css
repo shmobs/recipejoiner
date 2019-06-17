@@ -14,5 +14,10 @@
 	@apply text-gray-100;
 }
 
+/* Text fields (forms, etc.) */
+/*.text-field {
+  @apply 
+}*/
+
 @tailwind components;
 @tailwind utilities;

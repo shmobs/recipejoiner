@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <div className='mx-auto px-6 sm:px-8 lg:px-12 xl:px-24 lg:max-w-2lg xl:max-w-6xl'>
+    <div className='mx-auto px-6 sm:px-8 lg:px-12 xl:px-24 lg:max-w-2lg xl:max-w-7xl'>
       <header className='py-8 text-center sm:pt-16 sm:pb-12 sm:flex sm:items-end sm:justify-between'>
         <NavLink
           className='inline-flex items-baseline text-white no-underline text-2xl antialiased hover:translateY-1px hover:transition-1s'
