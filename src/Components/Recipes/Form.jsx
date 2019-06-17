@@ -11,12 +11,15 @@ class Form extends Component {
       categories: categories || [],
       title: title || '',
       description: description || '',
+      uploadFilePlaceholder: 'Choose a picture!',
+
     };
     this.fileInputRef = React.createRef();
     this.handleSimpleTextBoxChange = this.handleSimpleTextBoxChange.bind(this);
     this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
     this.handleSubmitWrapper = this.handleSubmitWrapper.bind(this);
     this.deleteCategory = this.deleteCategory.bind(this);
+    this.changeUploadFilePlaceholder = this.changeUploadFilePlaceholder.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -72,6 +75,10 @@ class Form extends Component {
     handleSubmit(e, recipe);
   }
 
+  changeUploadFilePlaceholder() {
+    this.setState({ uploadFilePlaceholder: this.fileInputRef.current.files[0].name });
+  }
+
   deleteCategory(ind) {
     const { categories } = this.state;
     const newCategories = categories.splice(ind, 1);
@@ -80,7 +87,7 @@ class Form extends Component {
   }
 
   render() {
-    const { category, categories, title, description } = this.state;
+    const { category, categories, title, description, uploadFilePlaceholder } = this.state;
     const labelFormat = 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2';
     const inputFormat = 'appearance-none block w-full bg-gray-200 text-gray-700 border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-200 focus:bg-white';
     return (
@@ -89,7 +96,7 @@ class Form extends Component {
         {/* Form row 1 */}
         <div className='flex flex-wrap -mx-3 mb-3'>
           {/* Title field */}
-          <div className='w-full md:w-2/3 px-3 mb-6 md:mb-0'>
+          <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
             <label className={labelFormat} htmlFor='grid-title'>
               Title
             </label>
@@ -103,17 +110,18 @@ class Form extends Component {
             />
           </div>
           {/* Upload image button */}
-          <div className='w-full md:w-1/3 px-3'>
+          <div className='w-full md:w-1/2 px-3'>
             <label className={labelFormat} htmlFor='image-upload-title'>
               Upload a picture
             </label>
             <label className='text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-3 px-4 mb-3 leading-tight'>
-              <span>Choose a pic!</span>
+              <span>{uploadFilePlaceholder}</span>
               <input
                 className='hidden'
                 name='image'
                 type='file'
                 ref={this.fileInputRef}
+                onChange={this.changeUploadFilePlaceholder}
               />
             </label>
           </div>
@@ -146,11 +154,11 @@ class Form extends Component {
             />
             <Categories categories={categories} deleteCategory={this.deleteCategory} />
           </div>
-          {/* Submit button*/}
+          {/* Submit button */}
           <div className='w-full px-3'>
             <button
               type='submit'
-              className='text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-3 px-4 mb-3 leading-tight'
+              className='block uppercase tracking-wide text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-5 px-4 mb-3 leading-tight'
             >
               Submit
             </button>
