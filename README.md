@@ -1,6 +1,6 @@
-# Codecation
+# RecipeJoiner
 
-OUR FIRST CODECATION!
+A product of OUR FIRST [CODECATION](https://thoughtbot.com/blog/you-should-take-a-codecation)!
 
 We're building a recipe managing app. Stay tuned.
 
