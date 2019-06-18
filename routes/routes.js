@@ -39,6 +39,7 @@ router.route('/recipe/:id')
 
 router.route('/recipes')
   .get(model.getAllRecipes, sendAsJSON)
-  .post(upload.single('image'), model.generateRecipeID, cloudinary.uploadImage, model.createOneRecipe, sendAsJSON);
+  .post(upload.single('image'), model.generateRecipeID,
+    cloudinary.uploadImage, model.createOneRecipe, sendAsJSON);
 
 module.exports = router;

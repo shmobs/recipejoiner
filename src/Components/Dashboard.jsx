@@ -67,7 +67,7 @@ class Dashboard extends Component {
         let show = false;
         const { categories: recipeCategories } = recipe;
         for (let i = 0; i < filters.length && !show; i++) {
-          if (recipeCategories.includes(filters[i])) {
+          if (recipeCategories != null && recipeCategories.includes(filters[i])) {
             show = true;
           }
         }
