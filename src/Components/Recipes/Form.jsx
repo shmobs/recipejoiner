@@ -95,7 +95,7 @@ class Form extends Component {
     const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
     return (
       <form className='mx-auto px-6 sm:px-8 lg:px-12 xl:px-24 lg:max-w-2lg xl:max-w-6xl' onSubmit={this.handleSubmitWrapper}>
-        <h1 className='font-bold text-xl'>Add a new recipe!</h1><br />
+        <h1 className='font-bold text-xl'>Add Recipe</h1><br />
         {/* Form row 1 */}
         <div className='flex flex-wrap -mx-3 mb-3'>
           {/* Title field */}
