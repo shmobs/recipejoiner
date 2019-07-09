@@ -84,13 +84,14 @@ class Dashboard extends Component {
     ));
 
     return (
-      <div>
+      <div className='p-12'>
         <div>
-          <h1>Categories</h1>
+          <h1 className='font-bold text-xl'>Categories</h1><br />
           <ul>{mappedCategories}</ul>
         </div>
+        <br />
         <div>
-          <h1>Recipes</h1>
+          <h1 className='font-bold text-xl'>Recipes</h1><br />
           <ul>{mappedRecipes}</ul>
         </div>
       </div>
