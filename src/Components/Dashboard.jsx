@@ -75,12 +75,12 @@ class Dashboard extends Component {
         return show;
       });
     const mappedRecipes = filteredRecipes.map(recipe => (
-      <li key={recipe.recipe_id}>
+      <div key={recipe.recipe_id}>
         <Link
           to={`/recipes/${recipe.recipe_id}`}
         >
-          <div className='max-w-sm rounded overflow-hidden shadow-lg'>
-            <img className='w-full' src={recipe.image_url} alt={recipe.title} />
+          <div className='max-w-xs rounded overflow-hidden shadow-lg'>
+            <img className='w-auto' src={recipe.image_url} alt={recipe.title} />
             <div className='px-6 py-4'>
               <div className='font-bold text-xl mb-2'>{recipe.title}</div>
               <p className='text-gray-700 text-base'>
@@ -94,7 +94,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </Link>
-      </li>
+      </div>
     ));
 
     return (
@@ -106,7 +106,9 @@ class Dashboard extends Component {
         <br />
         <div>
           <h1 className='font-bold text-xl'>Recipes</h1><br />
-          <ul>{mappedRecipes}</ul>
+          <div className='flex inline-flex flex-wrap -mx-3 mb-3'>
+            {mappedRecipes}
+          </div>
         </div>
       </div>
     );
