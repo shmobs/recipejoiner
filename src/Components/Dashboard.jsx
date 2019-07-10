@@ -88,9 +88,23 @@ class Dashboard extends Component {
               </p>
             </div>
             <div className='px-6 py-4'>
-              <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>#photography</span>
-              <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>#travel</span>
-              <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700'>#winter</span>
+              <span
+                className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+              >
+                {recipe.categories}
+              </span>
+{/*              {
+                recipe.categories.map(category => (
+                  <span
+                    key={category}
+                    className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+                  >
+                    {category}
+                  </span>
+
+                ))
+
+              }*/}
             </div>
           </div>
         </Link>
