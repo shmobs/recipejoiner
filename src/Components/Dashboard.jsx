@@ -76,6 +76,7 @@ class Dashboard extends Component {
       });
     const mappedRecipes = filteredRecipes.map(recipe => (
       <div key={recipe.recipe_id}>
+        {console.log(recipe)}
         <Link
           to={`/recipes/${recipe.recipe_id}`}
         >
@@ -88,12 +89,7 @@ class Dashboard extends Component {
               </p>
             </div>
             <div className='px-6 py-4'>
-              <span
-                className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
-              >
-                {recipe.categories}
-              </span>
-{/*              {
+              {
                 recipe.categories.map(category => (
                   <span
                     key={category}
@@ -104,7 +100,7 @@ class Dashboard extends Component {
 
                 ))
 
-              }*/}
+              }
             </div>
           </div>
         </Link>
