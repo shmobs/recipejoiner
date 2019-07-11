@@ -155,7 +155,7 @@ class Form extends Component {
               onChange={this.handleCategoriesChange}
               placeholder='Enter categories, separated by commas'
             />
-            <Categories categories={categories} deleteCategory={this.deleteCategory} />
+            <Categories categories={categories} includeDelete='true' deleteCategory={this.deleteCategory} />
           </div>
           {/* Submit button */}
           <div className='w-full px-3'>
