@@ -1,18 +1,22 @@
 import React from 'react';
 
 function Category(props) {
-  const { category, handleDelete } = props;
+  const { category, handleDelete, includeDelete } = props;
+  let deleteButton = (
+    <button
+      type='button'
+      onClick={handleDelete}
+    >
+      &nbsp;<b>x</b>
+    </button>
+  );
+  if (includeDelete !== 'true') deleteButton = '';
   return (
     <span
-      className='bg-green-500 text-white rounded py-2 px-2 mr-2 mb-2'
+      className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
     >
       {category}
-      <button
-        type='button'
-        onClick={handleDelete}
-      >
-        &nbsp;<b>x</b>
-      </button>
+      {deleteButton}
     </span>
   );
 }
