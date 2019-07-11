@@ -39,6 +39,7 @@ class Home extends Component {
     const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
     return (
       <div className='w-full max-w-xs m-auto'>
+            {/*Comment block right below is the old styling - keep for now*/}
 {/*        <form onSubmit={this.logIn}>
           <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
             <input
@@ -57,6 +58,7 @@ class Home extends Component {
           </div>
         </form>*/}
 
+      {/*Commented lines below will be uncommented when we implement passwords and such*/}
         {/*<div className='w-full max-w-xs'>*/}
           <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 bg-gray-200' onSubmit={this.logIn}>
             <div className='mb-4'>
