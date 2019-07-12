@@ -30,13 +30,16 @@ class Recipe extends Component {
     const { push } = history || {};
 
     return (
-      <div>
-        <h1>{data.title}</h1>
+      <div className='w-full max-w-md m-auto'>
+        <h1 className='font-bold text-xl'>{data.title}</h1>
+        <br />
         <img
           src={data.image_url}
           alt={data.title}
         />
-        <p>{data.description}</p><br />
+        <br />
+        <p>{data.description}</p>
+        <br />
         <button type='button' className='bg-blue-500 hover:bg-blue-700 text-white font py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
           <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
         </button>&nbsp;
