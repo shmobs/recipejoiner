@@ -20,10 +20,14 @@ function CreateRecipe(props) {
 
     fetch(`/api/recipes?user=${activeUser}`, {
       method: 'POST',
+      redirect: 'follow',
       body: data,
     })
       .then(r => r.json())
-      .then(console.log)
+      .then((rData) => {
+        console.log(rData);
+        window.location.href = `/recipes/${rData.recipe_id}`;
+      })
       .catch(err => console.error(err));
     return true;
   }

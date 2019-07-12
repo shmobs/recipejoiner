@@ -4,7 +4,6 @@ import Category from './Category';
 function Categories(props) {
   const { includeDelete, deleteCategory, categories } = props;
   let cats;
-  console.log(includeDelete);
   if (includeDelete === 'true') {
     cats = categories.map((c, i) => (<Category key={c} category={c} includeDelete={includeDelete} handleDelete={() => deleteCategory(i)} />));
   } else {
