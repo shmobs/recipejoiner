@@ -89,7 +89,7 @@ class Dashboard extends Component {
               </p>
             </div>
             <div className='px-6 py-4'>
-              <Categories categories={categories} includeDelete='false' deleteCategory={this.deleteCategory} />
+              <Categories categories={recipe.categories} includeDelete='false' deleteCategory={this.deleteCategory} />
             </div>
           </div>
         </Link>
