@@ -40,10 +40,17 @@ class Recipe extends Component {
         <br />
         <p>{data.description}</p>
         <br />
-        <button type='button' className='bg-blue-500 hover:bg-blue-700 text-white font py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-          <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
-        </button>&nbsp;
-        <DeleteRecipe data={data} push={push} />
+        <div className='w-full m-auto'>
+          <button
+            type='button'
+            className='bg-blue-500 hover:bg-blue-700 text-white font
+            py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          >
+            <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
+          </button>
+          &nbsp;
+          <DeleteRecipe data={data} push={push} />
+        </div>
       </div>
     );
   }
