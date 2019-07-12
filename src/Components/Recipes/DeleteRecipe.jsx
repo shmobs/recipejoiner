@@ -19,7 +19,7 @@ function DeleteRecipe(props) {
   }
 
   return (
-    <button type='button' onClick={deleteRecipe} className='bg-blue-500 hover:bg-blue-700 text-white font py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Delete</button>
+    <button type='button' onClick={deleteRecipe} className='bg-red-500 hover:bg-red-700 text-white font py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Delete</button>
   );
 }
 
