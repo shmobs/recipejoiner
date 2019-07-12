@@ -54,7 +54,7 @@ class Dashboard extends Component {
       <span key={category}>
         <button
           type='button'
-          className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+          className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 my-3'
           onClick={() => this.filterByCategory(category)}
         >
           {category}
