@@ -29,7 +29,7 @@ class UpdateRecipe extends Component {
         this.setState({
           title,
           description,
-          categories: categories.split(','),
+          categories,
           imageURL,
         });
       })
@@ -50,7 +50,7 @@ class UpdateRecipe extends Component {
     if (!title || !description) {
       return false;
     }
-    console.log('submittied recipe:', recipe);
+    console.log('submitted recipe:', recipe);
 
     const data = new FormData();
     data.append('title', title);

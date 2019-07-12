@@ -81,21 +81,25 @@ class Form extends Component {
 
   deleteCategory(ind) {
     const { categories } = this.state;
-    const newCategories = categories.splice(ind, 1);
-    this.setState = ({ categories: newCategories || [] });
+    categories.splice(ind, 1);
+    this.setState({ categories: categories || [] });
 
     // Added this because it wasn't rerendering the categories component on removal of a category
     this.forceUpdate();
   }
 
   render() {
+    const { recipe } = this.props;
     const { category, categories, title, description, uploadFilePlaceholder } = this.state;
     const labelFormat = 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2';
     // const inputFormat = 'border-transparent block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:border-blue-400 focus:outline-none focus:bg-white';
     const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
+    // show New for creating a recipe, Edit for editing a recipe
+    let action = 'New';
+    if (recipe != null) action = 'Edit';
     return (
       <form className='mx-auto px-6 sm:px-8 lg:px-12 xl:px-24 lg:max-w-2lg xl:max-w-6xl' onSubmit={this.handleSubmitWrapper}>
-        <h1 className='font-bold text-xl'>Add Recipe</h1><br />
+        <h1 className='font-bold text-xl'>{`${action} Recipe`}</h1><br />
         {/* Form row 1 */}
         <div className='flex flex-wrap -mx-3 mb-3'>
           {/* Title field */}
