@@ -40,7 +40,7 @@ class Recipe extends Component {
         <br />
         <p>{data.description}</p>
         <br />
-        <div className='w-full m-auto'>
+        <div className='text-center'>
           <button
             type='button'
             className='bg-blue-500 hover:bg-blue-700 text-white font
@@ -51,6 +51,8 @@ class Recipe extends Component {
           &nbsp;
           <DeleteRecipe data={data} push={push} />
         </div>
+        <br />
+        <br />
       </div>
     );
   }

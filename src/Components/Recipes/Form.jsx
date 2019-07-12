@@ -121,7 +121,10 @@ class Form extends Component {
             <label className={labelFormat} htmlFor='image-upload-title'>
               Upload a picture
             </label>
-            <label className='text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-3 px-4 mb-3 leading-tight'>
+            <label
+              className='text-center block w-full bg-blue-500 hover:bg-blue-700 text-white
+              font-bold border-red-500 rounded py-3 px-4 mb-3 leading-tight'
+            >
               <span>{uploadFilePlaceholder}</span>
               <input
                 className='hidden'
