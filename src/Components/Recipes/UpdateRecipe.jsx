@@ -58,12 +58,14 @@ class UpdateRecipe extends Component {
     data.append('categories', categories);
     data.append('image', file);
     data.append('imageURL', imageURL);
+    console.log('FormData:', data);
 
     fetch(`/api/recipes/${id}?user=${activeUser}`, {
       method: 'PUT',
       body: data,
     })
       .then(r => r.json())
+      .then(rData => console.log('jsonData:', rData))
       .then(() => push(`/recipes/${id}`))
       .catch(err => console.error(err));
     return true;
