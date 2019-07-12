@@ -102,13 +102,20 @@ function createOneRecipe(req, res, next) {
 }
 
 function editOneRecipe(req, res, next) {
-  console.log('here', req.params, req.query, req.body)
+  console.log('here', req.params, req.query, req.body);
   const { id } = req.params;
   const { userID,
     categories,
     title,
     description,
     imageURL } = req.body;
+
+  let newCategories;
+  if (Array.isArray(categories)) {
+    newCategories = categories;
+  } else {
+    newCategories = categories.replace(/(\[)|(\])/g, '').split(',');
+  }
 
   const finalUserID = userID || req.query.user;
 
@@ -121,7 +128,7 @@ function editOneRecipe(req, res, next) {
         $set: {
           user_id: finalUserID,
           image_url: imageURL,
-          categories,
+          categories: newCategories,
           title,
           description,
         },
