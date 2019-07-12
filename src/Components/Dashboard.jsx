@@ -76,7 +76,7 @@ class Dashboard extends Component {
         return show;
       });
     const mappedRecipes = filteredRecipes.map(recipe => (
-      <div key={recipe.recipe_id}>
+      <div key={recipe.recipe_id} className='p-6'>
         <Link
           to={`/recipes/${recipe.recipe_id}`}
         >
