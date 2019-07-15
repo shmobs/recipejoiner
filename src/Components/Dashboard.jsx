@@ -49,12 +49,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, recipes, filters } = this.state;
     const mappedCategories = categories.map(category => (
       <span key={category}>
         <button
           type='button'
-          className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 my-2'
+          className={`inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2 my-2
+          ${filters.includes(category) ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'}`}
           onClick={() => this.filterByCategory(category)}
         >
           {category}
@@ -62,7 +63,6 @@ class Dashboard extends Component {
       </span>
     ));
 
-    const { recipes, filters } = this.state;
     const filteredRecipes = filters.length === 0
       ? recipes
       : recipes.filter((recipe) => {
