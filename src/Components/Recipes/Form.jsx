@@ -68,6 +68,7 @@ class Form extends Component {
   }
 
   handleSubmitWrapper(e) {
+    this.refs.btn.setAttribute("disabled", "disabled");
     const { categories, title, description, imageURL } = this.state;
     const file = this.fileInputRef.current.files[0];
     const recipe = { categories, title, description, file, imageURL };
@@ -168,6 +169,7 @@ class Form extends Component {
           <div className='w-full px-3'>
             <button
               type='submit'
+              ref='btn'
               className='block uppercase tracking-wide text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-5 px-4 mb-3 leading-tight'
             >
               Submit
