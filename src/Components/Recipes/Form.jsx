@@ -172,7 +172,7 @@ class Form extends Component {
               type='submit'
               className={`block uppercase tracking-wide text-center block w-full bg-blue-500
               hover:bg-blue-700 text-white font-bold border-red-500 rounded py-5 px-4 mb-3
-              leading-tight ${disableSubmit ? 'cursor-not-allowed' : ''}`}
+              leading-tight ${disableSubmit ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Submit
             </button>
