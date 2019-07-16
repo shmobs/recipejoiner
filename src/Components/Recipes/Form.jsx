@@ -12,6 +12,7 @@ class Form extends Component {
       title: title || '',
       description: description || '',
       uploadFilePlaceholder: 'Choose a picture!',
+      disableSubmit: false,
 
     };
     this.fileInputRef = React.createRef();
@@ -68,7 +69,7 @@ class Form extends Component {
   }
 
   handleSubmitWrapper(e) {
-    this.refs.btn.setAttribute("disabled", "disabled");
+    this.setState({ disableSubmit: true });
     const { categories, title, description, imageURL } = this.state;
     const file = this.fileInputRef.current.files[0];
     const recipe = { categories, title, description, file, imageURL };
@@ -91,7 +92,7 @@ class Form extends Component {
 
   render() {
     const { recipe } = this.props;
-    const { category, categories, title, description, uploadFilePlaceholder } = this.state;
+    const { category, categories, title, description, uploadFilePlaceholder, disableSubmit } = this.state;
     const labelFormat = 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2';
     // const inputFormat = 'border-transparent block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:border-blue-400 focus:outline-none focus:bg-white';
     const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
@@ -169,8 +170,9 @@ class Form extends Component {
           <div className='w-full px-3'>
             <button
               type='submit'
-              ref='btn'
-              className='block uppercase tracking-wide text-center block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold border-red-500 rounded py-5 px-4 mb-3 leading-tight'
+              className={`block uppercase tracking-wide text-center block w-full bg-blue-500
+              hover:bg-blue-700 text-white font-bold border-red-500 rounded py-5 px-4 mb-3
+              leading-tight ${disableSubmit ? 'cursor-not-allowed' : ''}`}
             >
               Submit
             </button>
