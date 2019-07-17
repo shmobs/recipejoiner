@@ -16,7 +16,7 @@ class Recipe extends Component {
     const { params } = match || {};
     const { id } = params || {};
 
-    fetch(`/api/recipes/${id}?user=${user}`)
+    fetch(`/api/recipe/${id}?user=${user}`)
       .then(r => r.json())
       .then((data) => {
         this.setState({ data });
@@ -46,7 +46,7 @@ class Recipe extends Component {
             className='bg-blue-500 hover:bg-blue-700 text-white font
             py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           >
-            <Link to={`/recipes/${data.recipe_id}/edit`}>Edit</Link>
+            <Link to={`/recipe/${data.recipe_id}/edit`}>Edit</Link>
           </button>
           &nbsp;
           <DeleteRecipe data={data} push={push} />

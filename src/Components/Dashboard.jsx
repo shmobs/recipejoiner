@@ -78,7 +78,7 @@ class Dashboard extends Component {
     const mappedRecipes = filteredRecipes.map(recipe => (
       <div key={recipe.recipe_id} className='p-6'>
         <Link
-          to={`/recipes/${recipe.recipe_id}`}
+          to={`/recipe/${recipe.recipe_id}`}
         >
           <div className='max-w-xs rounded overflow-hidden shadow-lg'>
             <img className='w-auto' src={recipe.image_url} alt={recipe.title} />

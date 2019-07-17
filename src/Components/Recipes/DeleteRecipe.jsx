@@ -6,7 +6,7 @@ function DeleteRecipe(props) {
   function deleteRecipe() {
     const { recipe_id: recipeID, user_id: userID } = data;
 
-    fetch(`/api/recipes/${recipeID}?user=${userID}`, {
+    fetch(`/api/recipe/${recipeID}?user=${userID}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

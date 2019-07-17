@@ -64,7 +64,7 @@ class App extends Component {
         <Route
           name='recipe'
           exact
-          path='/recipes/:id'
+          path='/recipe/:id'
           render={props => (
             <Recipe
               isLoggedIn={isLoggedIn}
@@ -76,7 +76,7 @@ class App extends Component {
         <PrivateRoute
           name='edit'
           exact
-          path='/recipes/:id/edit'
+          path='/recipe/:id/edit'
           authenticated={isLoggedIn}
           component={props => (
             <UpdateRecipe

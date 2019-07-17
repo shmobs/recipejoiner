@@ -27,11 +27,6 @@ router.route('/test')
 router.route('/categories')
   .get(model.getAllCategories, sendAsJSON);
 
-router.route('/recipes/:id')
-  .get(model.getOneRecipe, sendAsJSON)
-  .put(upload.single('image'), model.editOneRecipe, model.getOneRecipe, sendAsJSON)
-  .delete(model.deleteOneRecipe, sendAsJSON);
-
 router.route('/recipe/:id')
   .get(model.getOneRecipe, sendAsJSON)
   .put(upload.single('image'), model.editOneRecipe, model.getOneRecipe, sendAsJSON)
