@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Categories from './Recipes/Categories';
+import RecipeCard from './RecipeCard.jsx';
+import Categories from './Recipes/Categories.jsx';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -76,24 +77,7 @@ class Dashboard extends Component {
         return show;
       });
     const mappedRecipes = filteredRecipes.map(recipe => (
-      <div key={recipe.recipe_id} className='p-6'>
-        <Link
-          to={`/recipe/${recipe.recipe_id}`}
-        >
-          <div className='max-w-xs rounded overflow-hidden shadow-lg'>
-            <img className='w-auto' src={recipe.image_url} alt={recipe.title} />
-            <div className='px-6 py-4'>
-              <div className='font-bold text-xl mb-2'>{recipe.title}</div>
-              <p className='text-gray-700 text-base'>
-                {recipe.description}
-              </p>
-            </div>
-            <div className='px-6 py-4'>
-              <Categories categories={recipe.categories} includeDelete='false' deleteCategory={this.deleteCategory} />
-            </div>
-          </div>
-        </Link>
-      </div>
+      <RecipeCard key={recipe.recipe_id} recipe={recipe} />
     ));
 
     return (
