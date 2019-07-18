@@ -5,12 +5,15 @@ class Form extends Component {
   constructor(props) {
     super(props);
     const { recipe } = props;
-    const { categories, title, description } = recipe || {};
+    const { categories, title, description, ingredients, steps, timers } = recipe || {};
     this.state = {
       category: '',
       categories: categories || [],
       title: title || '',
       description: description || '',
+      ingredients: ingredients || [],
+      steps: steps || [],
+      timers: timers || [],
       uploadFilePlaceholder: 'Choose a picture!',
       disableSubmit: false,
 
@@ -66,6 +69,10 @@ class Form extends Component {
         category,
       });
     }
+  }
+
+  handleIngredientsChange(event) {
+    this.setState({ingredients: event.target.value});
   }
 
   handleSubmitWrapper(e) {
@@ -151,6 +158,42 @@ class Form extends Component {
               onChange={this.handleSimpleTextBoxChange}
               placeholder='A brief description to sum up the deliciousness of your recipe'
             />
+          </div>
+          {/* Ingredients */}
+          <div className='w-full px-3'>
+            <label className={labelFormat} htmlFor='ingredients-title'>
+              Ingredients
+            </label>
+            <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              className={inputFormat}
+            >
+              <option value="grapefruit">Grapefruit</option>
+              <option value="lime">Lime</option>
+              <option value="coconut">Coconut</option>
+              <option value="mango">Mango</option>
+          </select>
+          <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              className={inputFormat}
+            >
+              <option value="grapefruit">Grapefruit</option>
+              <option value="lime">Lime</option>
+              <option value="coconut">Coconut</option>
+              <option value="mango">Mango</option>
+          </select>
+          <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              className={inputFormat}
+            >
+              <option value="grapefruit">Grapefruit</option>
+              <option value="lime">Lime</option>
+              <option value="coconut">Coconut</option>
+              <option value="mango">Mango</option>
+          </select>
           </div>
           {/* Categories */}
           <div className='w-full px-3'>
