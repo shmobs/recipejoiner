@@ -144,12 +144,12 @@ class Form extends Component {
             </label>
             <textarea
               className={inputFormat}
-              style={{ height: 150 }}
+              style={{ height: 70 }}
               name='description'
               type='text'
               value={description}
               onChange={this.handleSimpleTextBoxChange}
-              placeholder='Put any information about your recipe here!'
+              placeholder='A brief description to sum up the deliciousness of your recipe'
             />
           </div>
           {/* Categories */}
