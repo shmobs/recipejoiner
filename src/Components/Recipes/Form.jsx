@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Categories from './Categories';
+import Ingredients from './Ingredients';
 
 class Form extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Form extends Component {
       categories: categories || [],
       title: title || '',
       description: description || '',
-      ingredients: ingredients || [],
+      ingredients: ingredients || [''],
       steps: steps || [],
       timers: timers || [],
       uploadFilePlaceholder: 'Choose a picture!',
@@ -71,8 +72,13 @@ class Form extends Component {
     }
   }
 
-  handleIngredientsChange(event) {
-    this.setState({ingredients: event.target.value});
+  handleIngredientsChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      ingredients: {
+        [name]: value,
+      },
+    });
   }
 
   handleSubmitWrapper(e) {
@@ -99,7 +105,16 @@ class Form extends Component {
 
   render() {
     const { recipe } = this.props;
-    const { category, categories, title, description, uploadFilePlaceholder, disableSubmit } = this.state;
+    const { 
+      category, 
+      categories, 
+      title, 
+      description,
+      ingredients,
+      steps,
+      timers,
+      uploadFilePlaceholder, 
+      disableSubmit } = this.state;
     const labelFormat = 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2';
     // const inputFormat = 'border-transparent block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:border-blue-400 focus:outline-none focus:bg-white';
     const inputFormat = 'bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 text-gray-900 appearance-none inline-block w-full text-gray-900 border rounded py-3 px-4 mb-3 focus:outline-none';
@@ -156,44 +171,36 @@ class Form extends Component {
               type='text'
               value={description}
               onChange={this.handleSimpleTextBoxChange}
-              placeholder='A brief description to sum up the deliciousness of your recipe'
+              placeholder='A brief description to sum up your recipe'
             />
           </div>
           {/* Ingredients */}
-          <div className='w-full px-3'>
+          <div className='w-full md:w-3/4 px-3'>
             <label className={labelFormat} htmlFor='ingredients-title'>
               Ingredients
             </label>
-            <select
-              value={this.state.value}
-              onChange={this.handleChange}
-              className={inputFormat}
+            <Ingredients 
+              ingredients={ingredients}
+              inputFormat={inputFormat}
+              handleChangeIngredients={this.handleChangeIngredients}
+            />
+          </div>
+          <div className='w-full md:w-1/4 px-3'>
+            <label className={labelFormat} htmlFor='image-upload-title'>
+              .
+            </label>
+            <button 
+              className='w-full bg-blue-500 hover:bg-blue-700 text-white
+              font-bold py-3 px-4 mb-3 leading-tight rounded inline-flex items-center'
             >
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-          </select>
-          <select
-              value={this.state.value}
-              onChange={this.handleChange}
-              className={inputFormat}
-            >
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-          </select>
-          <select
-              value={this.state.value}
-              onChange={this.handleChange}
-              className={inputFormat}
-            >
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-          </select>
+              <svg className='fill-current w-4 h-4 mr-2'
+                   xmlns='http://www.w3.org/2000/svg'
+                   viewBox='0 0 20 20'
+               >
+                 <path d='M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z'/>
+               </svg>
+              <span>Add Another</span>
+            </button>
           </div>
           {/* Categories */}
           <div className='w-full px-3'>
@@ -207,7 +214,11 @@ class Form extends Component {
               onChange={this.handleCategoriesChange}
               placeholder='Enter categories, separated by commas'
             />
-            <Categories categories={categories} includeDelete='true' deleteCategory={this.deleteCategory} />
+            <Categories 
+              categories={categories}
+              includeDelete='true'
+              deleteCategory={this.deleteCategory}
+            />
           </div>
           {/* Submit button */}
           <div className='w-full px-3'>
