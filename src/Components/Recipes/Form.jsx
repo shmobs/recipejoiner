@@ -12,7 +12,7 @@ class Form extends Component {
       categories: categories || [],
       title: title || '',
       description: description || '',
-      ingredients: ingredients || [''],
+      ingredients: ingredients || ['',''],
       steps: steps || [],
       timers: timers || [],
       uploadFilePlaceholder: 'Choose a picture!',
@@ -175,7 +175,7 @@ class Form extends Component {
             />
           </div>
           {/* Ingredients */}
-          <div className='w-full md:w-3/4 px-3'>
+          <div className='w-full px-3'>
             <label className={labelFormat} htmlFor='ingredients-title'>
               Ingredients
             </label>
@@ -184,23 +184,6 @@ class Form extends Component {
               inputFormat={inputFormat}
               handleChangeIngredients={this.handleChangeIngredients}
             />
-          </div>
-          <div className='w-full md:w-1/4 px-3'>
-            <label className={labelFormat} htmlFor='image-upload-title'>
-              .
-            </label>
-            <button 
-              className='w-full bg-blue-500 hover:bg-blue-700 text-white
-              font-bold py-3 px-4 mb-3 leading-tight rounded inline-flex items-center'
-            >
-              <svg className='fill-current w-4 h-4 mr-2'
-                   xmlns='http://www.w3.org/2000/svg'
-                   viewBox='0 0 20 20'
-               >
-                 <path d='M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z'/>
-               </svg>
-              <span>Add Another</span>
-            </button>
           </div>
           {/* Categories */}
           <div className='w-full px-3'>
