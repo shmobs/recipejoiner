@@ -149,7 +149,7 @@ class Form extends Component {
               type='text'
               value={description}
               onChange={this.handleSimpleTextBoxChange}
-              placeholder='A brief description to sum up the deliciousness of your recipe'
+              placeholder='A brief description to sum up your recipe'
             />
           </div>
           {/* Categories */}
