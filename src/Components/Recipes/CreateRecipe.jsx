@@ -26,7 +26,7 @@ function CreateRecipe(props) {
       .then(r => r.json())
       .then((rData) => {
         console.log(rData);
-        window.location.href = `/recipes/${rData.recipe_id}`;
+        window.location.href = `/recipe/${rData.recipe_id}`;
       })
       .catch(err => console.error(err));
     return true;
