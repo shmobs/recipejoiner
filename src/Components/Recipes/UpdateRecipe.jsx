@@ -22,7 +22,7 @@ class UpdateRecipe extends Component {
     const { push } = history;
 
     // load recipe if exists, otherwise send Home
-    fetch(`/api/recipes/${id}?user=${user}`)
+    fetch(`/api/recipe/${id}?user=${user}`)
       .then(r => r.json())
       .then((data) => {
         const { title, description, categories, image_url: imageURL } = data;
@@ -60,13 +60,13 @@ class UpdateRecipe extends Component {
     data.append('imageURL', imageURL);
     console.log('FormData:', data);
 
-    fetch(`/api/recipes/${id}?user=${activeUser}`, {
+    fetch(`/api/recipe/${id}?user=${activeUser}`, {
       method: 'PUT',
       body: data,
     })
       .then(r => r.json())
       .then(rData => console.log('jsonData:', rData))
-      .then(() => push(`/recipes/${id}`))
+      .then(() => push(`/recipe/${id}`))
       .catch(err => console.error(err));
     return true;
   }
