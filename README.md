@@ -1,3 +1,4 @@
+![recipejoiner-logo](public/android-chrome-192x192.png)
 # RecipeJoiner
 
 A product of OUR FIRST [CODECATION](https://thoughtbot.com/blog/you-should-take-a-codecation)!
